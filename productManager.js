@@ -49,9 +49,9 @@ getProductById = (idProduct) =>{
 };
 
 const menejadorProductos = new ProductManager ();
-menejadorProductos.addProduct ('Regla', 'Transparente', 80, 'Sin imagen', 'ab154', 36);
-menejadorProductos.addProduct ('Lapiz', 'Transparente', 100, 'Sin imagen', 'ab155', 30);
-menejadorProductos.addProduct ('Birome', 'Transparente', 200, 'Sin imagen', 'ab156', 15);
+menejadorProductos.addProduct ('Autito', 'Madera', 3000, 'Sin imagen', 'ab100', 30);
+menejadorProductos.addProduct ('Avion', 'Madera', 3500, 'Sin imagen', 'ab101', 25);
+menejadorProductos.addProduct ('Tren', 'Madera', 4000, 'Sin imagen', 'ab102', 20);
 
 menejadorProductos.getProductById(1);
 menejadorProductos.getProductById(2);
