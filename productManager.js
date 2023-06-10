@@ -1,65 +1,64 @@
 class ProductManager{
     constructor() {
         this.products = [];
+    }
+
+    static id = 0;
+
+    addProduct(title, description, price, thumbnail, code, stock){
+        for(let i = 0; i < this.products.length; i++){
+            if(this.products[i].code === code){
+                console.log(`El codigo ${code} esta repetido`)
+                break;
+            }
+        }
+    
+        const newProduct ={
+            title,
+            description,
+            price,
+            thumbnail,
+            code,
+            stock,
+        }
+
+        if(!Object.values(newProduct).includes(undefined)){
+            ProductManager.id++;
+            this.products.push({
+                ...newProduct,
+                id: ProductManager.id,
+            });
+        } else {
+            console.log("Todos los campos son requeridos")
+        }
         
-
     }
-
-getProducts = () => {
-    return this.products;
-
+        
+    getProduct() {
+        return this.products;
+    }
+        
+    existe(id){
+        return this.products.find((producto) => producto.id === id);
+    }
+    
+    getProductById(id) {
+        !this.existe(id) ? console.log("Not Found") : console.log(this.existe(id));
+    }
 }
 
-addProduct = (title, description, price, thumbnail, code, stock) => {
-    const product = {
-        title,
-        description,
-        price,
-        thumbnail,
-        code,
-        stock,
-        products: []
-    }
+const productos = new ProductManager();
 
-    if (this.products.length === 0){
-        product.id = 1
-    } else {
-        product.id = this.products [this.products.length - 1].id+1
-    }
+//Primer llamada = arreglo vacio
+console.log(productos.getProduct());
 
-    this.products.push(product)
-}
+//Agregamos Producto
+productos.addProduct('Autito', 'Madera', 3000, 'Sin imagen', 'ab100', 30);
+productos.addProduct('Avion', 'Madera', 3500, 'Sin imagen', 'ab101', 25);
+productos.addProduct('Tren', 'Madera', 4000, 'Sin imagen', 'ab102', 20);
 
-getProductById = (idProduct) =>{
-    const productIndex = this.products.findIndex(product => product.id === idProduct);
+//Segunda llamada = arreglo con producto
+console.log(productos.getProduct());
 
-    if (productIndex === -1){
-        console.log("Not found");
-        return;
-    }
-
-    const productAdd = this.products [productIndex].products.includes(idProduct);
-
-    if (productAdd){
-        console.log("El producto se agrego correctamente");
-        return;
-    }
-    this.products[productIndex].products.push(idProduct)
-}
-};
-
-const menejadorProductos = new ProductManager ();
-menejadorProductos.addProduct ('Autito', 'Madera', 3000, 'Sin imagen', 'ab100', 30);
-menejadorProductos.addProduct ('Avion', 'Madera', 3500, 'Sin imagen', 'ab101', 25);
-menejadorProductos.addProduct ('Tren', 'Madera', 4000, 'Sin imagen', 'ab102', 20);
-
-menejadorProductos.getProductById(1);
-menejadorProductos.getProductById(2);
-menejadorProductos.getProductById(3);
-
-console.log(menejadorProductos.getProducts());
-
-
-
-
-
+//Busqueda de productos por Id
+productos.getProductById(3);
