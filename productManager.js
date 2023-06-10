@@ -62,3 +62,6 @@ console.log(productos.getProduct());
 
 //Busqueda de productos por Id
 productos.getProductById(3);
+
+//Busqueda por Id no encontrado
+productos.getProductById(4);
